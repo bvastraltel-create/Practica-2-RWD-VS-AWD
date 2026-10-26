@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Catálogo Hardware - AWD Desktop</title>
+  <link rel="stylesheet" href="/css/adaptive.css">
+</head>
+<body class="desktop-view">
+  <header class="header">
+    <h1>DataCenter Hardware Catalog (AWD Desktop Edition)</h1>
+    <nav class="nav">
+      <a href="#cat">Catálogo</a>
+      <a href="#stats">Gráficos</a>
+    </nav>
+  </header>
+  
+  <div class="layout-desktop">
+    <aside class="sidebar">
+      <h3>Filtros Avanzados</h3>
+      
+      <div class="filter-group">
+        <label><input type="checkbox"> Solo Serie 40</label><br>
+        <label><input type="checkbox"> > 16 GB VRAM</label>
+      </div>
+      
+      <section class="heavy-chart" id="stats">
+        <h4>Comparativa de Rendimiento</h4>
+        <div class="chart-container">
+          <svg viewBox="0 0 300 180" class="chart-svg">
+            <rect width="300" height="180" fill="#1a202c" rx="6"/>
+            
+            <text x="10" y="30" fill="#a0aec0" font-size="10">RTX 4090</text>
+            <rect x="80" y="18" width="200" height="15" fill="#4299e1" rx="3"/>
+            
+            <text x="10" y="70" fill="#a0aec0" font-size="10">RTX 4080S</text>
+            <rect x="80" y="58" width="125" height="15" fill="#319795" rx="3"/>
+            
+            <text x="10" y="110" fill="#a0aec0" font-size="10">RTX 4070TiS</text>
+            <rect x="80" y="98" width="103" height="15" fill="#ed8936" rx="3"/>
+
+            <text x="10" y="150" fill="#a0aec0" font-size="10">RTX 4060</text>
+            <rect x="80" y="138" width="37" height="15" fill="#e53e3e" rx="3"/>
+          </svg>
+        </div>
+      </section>
+    </aside>
+
+    <main class="grid-desktop" id="cat">
+      <% products.forEach(p => { %>
+        <article class="card">
+          <img src="<%= p.image %>.jpg" alt="<%= p.name %>" class="card-img">
+          <div class="card-body">
+            <h3><%= p.name %></h3>
+            <ul class="specs">
+              <li><strong>VRAM:</strong> <%= p.specs.vram %></li>
+              <li><strong>Bus:</strong> <%= p.specs.bus %></li>
+              <li><strong>CUDA Cores:</strong> <%= p.specs.cuda %></li>
+              <li><strong>TDP:</strong> <%= p.specs.tdp %></li>
+            </ul>
+            <div class="card-footer">
+              <span class="price"><%= p.price %></span>
+              <button class="btn-buy">Comprar</button>
+            </div>
+          </div>
+        </article>
+      <% }); %>
+    </main>
+  </div>
+</body>
+</html>

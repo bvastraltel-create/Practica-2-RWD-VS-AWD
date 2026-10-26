@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catálogo Hardware - AWD Mobile</title>
+  <link rel="stylesheet" href="/css/adaptive.css">
+</head>
+<body class="mobile-view">
+  <header class="header">
+    <h1>DataCenter Hardware Catalog (AWD Mobile)</h1>
+    <nav class="nav">
+      <a href="#cat">Catálogo</a>
+    </nav>
+  </header>
+  
+  <div class="mobile-container">
+    <aside class="sidebar-mobile">
+      <button class="filter-toggle-mobile" id="toggle-filters">
+        <span>Filtros Avanzados</span>
+        <span class="icon">▼</span>
+      </button>
+
+      <div class="filter-content-mobile" id="filter-content">
+        <div class="filter-group">
+          <label><input type="checkbox"> Solo Serie 40</label><br>
+          <label><input type="checkbox"> > 16 GB VRAM</label>
+        </div>
+      </div>
+    </aside>
+
+    <main class="list-mobile" id="cat">
+      <% products.forEach(p => { %>
+        <article class="card-mobile">
+          <img src="<%= p.image %>.webp" alt="<%= p.name %>" class="card-img-mobile">
+          <div class="card-info">
+            <h3><%= p.name %></h3>
+            <p class="small-spec"><strong>VRAM:</strong> <%= p.specs.vram %></p>
+            <div class="mobile-row">
+              <span class="price"><%= p.price %></span>
+              <button class="btn-buy-sm">Comprar</button>
+            </div>
+          </div>
+        </article>
+      <% }); %>
+    </main>
+  </div>
+
+  <script>
+    document.getElementById('toggle-filters').addEventListener('click', function() {
+      const content = document.getElementById('filter-content');
+      content.classList.toggle('open');
+      this.classList.toggle('active');
+    });
+  </script>
+</body>
+</html>

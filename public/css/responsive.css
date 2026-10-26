@@ -1,0 +1,114 @@
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: system-ui, sans-serif; }
+
+body { padding: 1rem; background-color: #f7fafc; color: #1a202c; }
+.header { display: flex; justify-content: space-between; align-items: center; padding: 1rem; background: #2b6cb0; color: white; margin-bottom: 1rem; }
+.nav a { color: white; margin-left: 1rem; text-decoration: none; }
+
+.layout-container { display: flex; flex-direction: column; gap: 1.5rem; }
+
+/* RWD */
+.catalog-grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 1.5rem;
+}
+
+.card { border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden; background: white; }
+
+.card-img {
+    display: block;
+    width: 100%;
+    height: 180px;
+    object-fit: contain;
+    background-color: white;
+}
+
+.card-body { padding: 1rem; }
+.specs { list-style: none; margin: 1rem 0; font-size: 0.9rem; }
+.card-footer { display: flex; justify-content: space-between; align-items: center; }
+.price { font-weight: bold; font-size: 1.2rem; color: #2b6cb0; }
+.btn-buy { background: #319795; color: white; border: none; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer; }
+
+/* Si es telefono se esconde */
+.heavy-chart { margin-top: 1rem; }
+
+/* Breakpoints */
+@media (min-width: 640px) {
+  .catalog-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 1024px) {
+  .layout-container { flex-direction: row; }
+  .sidebar { width: 300px; flex-shrink: 0; }
+  .catalog-grid { flex-grow: 1; grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 639px) {
+  .heavy-chart {
+    display: none;
+  }
+}
+
+/* Botón desplegable (Oculto en Escritorio) */
+.filter-toggle {
+  display: none;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background-color: #2b6cb0;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.filter-toggle .icon {
+  transition: transform 0.3rem ease;
+}
+
+.filter-toggle.active .icon {
+  transform: rotate(180deg);
+}
+
+/* Estado Colapsado en celulares */
+@media (max-width: 639px) {
+  .filter-toggle {
+    display: flex; 
+  }
+
+  .filter-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out, opacity 0.3s ease;
+    opacity: 0;
+    background: white;
+    padding: 0 1rem;
+    border-radius: 0 0 6px 6px;
+  }
+
+  /* Clase que se activa con JS al presionar el botón */
+  .filter-content.open {
+    max-height: 500px;
+    opacity: 1;
+    padding: 1rem;
+    border: 1px solid #e2e8f0;
+    margin-top: 0.5rem;
+  }
+
+  /* ocultar el grafico pesado en movil */
+  .heavy-chart {
+    display: none;
+  }
+}
+
+/* escritorio: mostrar siempre abierto */
+@media (min-width: 1024px) {
+  .filter-content {
+    max-height: none !important;
+    opacity: 1 !important;
+    display: block !important;
+  }
+}
